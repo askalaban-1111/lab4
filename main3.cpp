@@ -6,8 +6,7 @@ int main() {
     int monsterHP = 15;
     int choice;
 
-    cout << "=== БОЙ ГЕРОЯ И МОНСТРА ===" << endl;
-    cout << "\nЗдоровье:" << endl;
+    cout << "\nЗДОРОВЬЕ!" << endl;
     cout << "Герой: " << heroHP << endl;
     cout << "Монстр: " << monsterHP << endl;
 
@@ -19,30 +18,20 @@ int main() {
         cout << "Введите ваш выбор: ";
         cin >> choice;
 
-        if (choice == 0) {
-            break;
-        }
-        else if (choice == 1) {
-            monsterHP -= 4;
-            cout << "\nВы ударили монстра! Он получил 4 урона." << endl;
-        }
-        else if (choice == 2) {
-            int healAmount = 3;
-            if (heroHP + healAmount > 20) {
-                healAmount = 20 - heroHP;
-            }
-            heroHP += healAmount;
-            cout << "\nВы излечились на " << healAmount << " HP." << endl;
-        }
-        else {
-            cout << "\nНеверный выбор! Введите 0, 1 или 2." << endl;
-            continue;
-        }
+        int sum;
 
-        if (monsterHP > 0) {
-            heroHP -= 2;
-            cout << "Монстр атаковал вас! Вы получили 2 урона." << endl;
+        switch (choice) {
+            case 1: monsterHP -= 4; break;
+            case 2: if (heroHP < 20) {
+                heroHP += 3;
+                if ((sum = heroHP - 20) > 0) {
+                    heroHP -= sum;
+                }
+            }; break;
+                
+                default: cout << "Значение введено неверно!" << endl;
         }
+        
     } while (choice != 0);
 
     if (heroHP <= 0) {
